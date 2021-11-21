@@ -10,7 +10,7 @@ public class Employee {
     private LocalDateTime dob;
     private Position position;
     private Integer yearOfEmployment;
-    private PayrollAccount payrollAccountId;
+    private PayrollAccount payrollAccount;
 
     public Long getId() {
         return id;
@@ -52,12 +52,12 @@ public class Employee {
         this.yearOfEmployment = yearOfEmployment;
     }
 
-    public PayrollAccount getPayrollAccountId() {
-        return payrollAccountId;
+    public PayrollAccount getPayrollAccount() {
+        return payrollAccount;
     }
 
-    public void setPayrollAccountId(PayrollAccount payrollAccountId) {
-        this.payrollAccountId = payrollAccountId;
+    public void setPayrollAccount(PayrollAccount payrollAccount) {
+        this.payrollAccount = payrollAccount;
     }
 
     public Position getPosition() {
