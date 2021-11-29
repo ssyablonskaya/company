@@ -1,11 +1,13 @@
 package com.solvd.company;
 
+import java.math.BigDecimal;
+
 public class Service {
 
     private Long id;
     private String name;
     private Integer durationDays;
-    private Double price;
+    private BigDecimal price;
 
     public Long getId() {
         return id;
@@ -31,11 +33,11 @@ public class Service {
         this.durationDays = durationDays;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

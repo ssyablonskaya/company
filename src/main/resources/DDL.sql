@@ -32,6 +32,7 @@ create table if not exists Positions (
 	salary double unsigned not null,
     primary key(id)
 );
+ALTER TABLE Positions MODIFY salary DECIMAL(7,2);
 
 create table if not exists Payroll_accounts (
 	id serial,
@@ -105,6 +106,7 @@ create table if not exists Services (
 		on update no action
         on delete cascade
 );
+ALTER TABLE Services MODIFY price DECIMAL(7,2);
 
 create table if not exists Clients (
 	id serial,
