@@ -1,10 +1,12 @@
 package com.solvd.company;
 
+import java.math.BigDecimal;
+
 public class Position {
 
     private Long id;
     private String name;
-    private Double salary;
+    private BigDecimal salary;
 
     public Long getId() {
         return id;
@@ -22,11 +24,11 @@ public class Position {
         this.name = name;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 }
