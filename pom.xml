@@ -11,6 +11,7 @@
 
     <properties>
         <log4jVersion>2.14.1</log4jVersion>
+        <mysqlVersion>8.0.27</mysqlVersion>
     </properties>
 
     <dependencies>
@@ -23,6 +24,11 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysqlVersion}</version>
         </dependency>
     </dependencies>
 
