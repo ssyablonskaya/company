@@ -6,8 +6,7 @@ public interface ServiceRepository {
 
     void create(Long companyId, Service service);
 
-    void update();
+    void update(Service service, String name);
 
-    void delete();
 
 }

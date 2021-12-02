@@ -36,34 +36,17 @@ public class ServiceRepositoryImpl implements ServiceRepository {
     }
 
     @Override
-    public void update() {
+    public void update(Service service, String name) {
         Connection connection = CONNECTION_POOL.getConnection();
         String update = "UPDATE Services SET name = ? where id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(update)) {
-            String name = "plastering the walls";
-            long id = 4L;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(update);
 
             preparedStatement.setString(1, name);
-            preparedStatement.setLong(2, id);
+            preparedStatement.setLong(2, service.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             throw new ProcessException("Can't update a Service", ex);
-        } finally {
-            CONNECTION_POOL.releaseConnection(connection);
-        }
-    }
-
-    @Override
-    public void delete() {
-        Connection connection = CONNECTION_POOL.getConnection();
-        String delete = "DELETE FROM Services WHERE duration_days = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(delete)) {
-            int durationDays = 1;
-            preparedStatement.setInt(1, durationDays);
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException ex) {
-            throw new ProcessException("Can't delete a Service", ex);
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }

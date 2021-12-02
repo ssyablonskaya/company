@@ -8,6 +8,8 @@ public interface CompanyRepository {
 
     void create(Long addressId, Long contactId, Company company);
 
-    //List<Company> findAll();
+    void delete(Long deleteId);
+
+    List<Company> findAll();
 
 }

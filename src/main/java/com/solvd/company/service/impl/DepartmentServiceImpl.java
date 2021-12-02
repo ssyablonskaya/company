@@ -13,14 +13,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department create(Long companyId, Department department) {
-
+        department.setId(null);
+        departmentRepository.create(companyId, department);
         if (department.getEmployees() != null) {
             department.getEmployees()
                     .forEach(employee -> employeeService.create(department.getId(), employee));
         }
 
-        department.setId(null);
-        departmentRepository.create(companyId, department);
+
         return department;
     }
 

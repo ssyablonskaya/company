@@ -1,8 +1,14 @@
 package com.solvd.company;
 
 import com.solvd.company.domain.*;
+import com.solvd.company.persistence.CompanyRepository;
+import com.solvd.company.persistence.ServiceRepository;
+import com.solvd.company.persistence.impl.CompanyRepositoryImpl;
+import com.solvd.company.persistence.impl.ServiceRepositoryImpl;
 import com.solvd.company.service.CompanyService;
+import com.solvd.company.service.TaxAdministrationService;
 import com.solvd.company.service.impl.CompanyServiceImpl;
+import com.solvd.company.service.impl.TaxAdministrationServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Main {
 
@@ -17,12 +24,12 @@ public class Main {
 
     public static void main(String[] args) {
         PayrollAccount firstPA = new PayrollAccount();
-        firstPA.setBank("MyBank1");
-        firstPA.setBankAccount("MB4252351");
+        firstPA.setBank("MyBankGood");
+        firstPA.setBankAccount("A" + UUID.randomUUID());
 
         PayrollAccount secondPA = new PayrollAccount();
-        secondPA.setBank("MyBank1");
-        secondPA.setBankAccount("MB244252351");
+        secondPA.setBank("GoodMyBank");
+        secondPA.setBankAccount("A" + UUID.randomUUID());
 
         Address firstAddress = new Address();
         firstAddress.setCountry("Russia");
@@ -32,24 +39,24 @@ public class Main {
 
         Contact firstContact = new Contact();
         firstContact.setPhoneNumber("80923949951");
-        firstContact.setEmail("mycompany@gmail.com");
-        firstContact.setWebsite("mycompany1.ru");
+        firstContact.setEmail("cgmycompany@gmail.com");
+        firstContact.setWebsite("ssmycompany.ru");
 
         Position firstPosition = new Position();
         firstPosition.setName("recruiter");
         firstPosition.setSalary(BigDecimal.valueOf(1300.44));
 
         Employee firstEmployee = new Employee();
-        firstEmployee.setFirstName("Felix");
-        firstEmployee.setLastName("Brikh");
+        firstEmployee.setFirstName("Felixey");
+        firstEmployee.setLastName("Brikhey");
         firstEmployee.setDob(LocalDate.of(1970, 3, 17));
         firstEmployee.setYearOfEmployment(2021);
         firstEmployee.setPosition(firstPosition);
         firstEmployee.setPayrollAccount(firstPA);
 
         Employee secondEmployee = new Employee();
-        secondEmployee.setFirstName("Miley");
-        secondEmployee.setLastName("Cyrus");
+        secondEmployee.setFirstName("Mileeey");
+        secondEmployee.setLastName("Cyruy");
         secondEmployee.setDob(LocalDate.of(1970, 4, 7));
         secondEmployee.setYearOfEmployment(2021);
         secondEmployee.setPosition(firstPosition);
@@ -65,7 +72,7 @@ public class Main {
         departments.add(firstDepartment);
 
         Service firstService = new Service();
-        firstService.setName("upgrading your communication skills");
+        firstService.setName("upgrading your communication skills2");
         firstService.setPrice(BigDecimal.valueOf(290.00));
         firstService.setDurationDays(60);
 
@@ -79,12 +86,13 @@ public class Main {
         services.add(secondService);
 
         Client firstClient = new Client();
-        firstClient.setName("Alexander Wang holding two");
+        firstClient.setName("Alexander Wang holding");
+        firstClient.setDateOfCooperation(LocalDate.now());
         List<Client> clients = new ArrayList<>();
         clients.add(firstClient);
 
         Company firstCompany = new Company();
-        firstCompany.setName("MyCompany1");
+        firstCompany.setName("CompanyGood");
         firstCompany.setSphere("communication");
         firstCompany.setAddress(firstAddress);
         firstCompany.setContact(firstContact);
@@ -93,15 +101,27 @@ public class Main {
         firstCompany.setClients(clients);
 
         TaxAdministration taxAdministration = new TaxAdministration();
-        taxAdministration.setNumber("new436634631");
+        taxAdministration.setNumber("N" + UUID.randomUUID());
         taxAdministration.setBank("MyBank1");
-        taxAdministration.setBankAccount("mybank39599471");
+        taxAdministration.setBankAccount("B" + UUID.randomUUID());
         taxAdministration.setCompany(firstCompany);
-
 
         CompanyService companyService = new CompanyServiceImpl();
         companyService.create(firstCompany);
 
+        CompanyRepository companyRepository = new CompanyRepositoryImpl();
+        companyRepository.delete(23L);
+
+        ServiceRepository serviceRepository = new ServiceRepositoryImpl();
+        serviceRepository.update(firstService, "making your communication skills better");
+
+        TaxAdministrationService taxAdministrationService = new TaxAdministrationServiceImpl();
+        taxAdministrationService.create(firstCompany.getId(), taxAdministration);
+
+        List<Company> companies = companyService.getAll();
+        LOGGER.debug(companies);
+
+        LOGGER.info("Hi");
 
     }
 

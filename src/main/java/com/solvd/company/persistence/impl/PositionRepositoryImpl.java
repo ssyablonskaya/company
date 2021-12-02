@@ -1,13 +1,12 @@
 package com.solvd.company.persistence.impl;
 
 import com.solvd.company.domain.Position;
+import com.solvd.company.domain.exception.DataNotFoundException;
 import com.solvd.company.domain.exception.ProcessException;
 import com.solvd.company.persistence.ConnectionPool;
 import com.solvd.company.persistence.PositionRepository;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class PositionRepositoryImpl implements PositionRepository {
@@ -50,7 +49,7 @@ public class PositionRepositoryImpl implements PositionRepository {
                 result.setId(resultSet.getLong(1));
             }
         } catch (SQLException ex) {
-            throw new ProcessException("Can't select Position by it's name", ex);
+            throw new DataNotFoundException("Can't find Position by it's name", ex);
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }

@@ -16,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final PositionService positionService = new PositionServiceImpl();
 
     @Override
-    public void create(Long departmentId, Employee employee) {
+    public Employee create(Long departmentId, Employee employee) {
         if (employee.getPayrollAccount() != null) {
             payrollAccountRepository.create(employee.getPayrollAccount());
         }
@@ -31,5 +31,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
 
+        return employee;
     }
 }

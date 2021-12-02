@@ -6,6 +6,8 @@ import com.solvd.company.persistence.ConnectionPool;
 import com.solvd.company.persistence.EmployeeRepository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
@@ -34,6 +36,39 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
+    }
+
+    public static List<Employee> mapEmployees(ResultSet resultSet) {
+        List<Employee> employees = new ArrayList<>();
+        try {
+            long id = resultSet.getLong("employee_id");
+            if (id != 0) {
+                Employee employee = checkExistence(id, employees);
+                employee.setFirstName(resultSet.getString("employee_first_name"));
+                employee.setLastName(resultSet.getString("employee_last_name"));
+                employee.setDob(resultSet.getTimestamp("employee_dob").toLocalDateTime().toLocalDate());
+                employee.setYearOfEmployment(resultSet.getInt("employee_year_of_employment"));
+            }
+        } catch (SQLException ex) {
+            throw new ProcessException("Map exception", ex);
+        }
+        return employees;
+    }
+
+    private static Employee checkExistence(Long id, List<Employee> employees) {
+        Employee result = null;
+        for (Employee employee : employees) {
+            if (employee.getId().equals(id)) {
+                result = employee;
+            }
+        }
+        if (result == null) {
+            Employee createdEmployee = new Employee();
+            createdEmployee.setId(id);
+            employees.add(createdEmployee);
+            result = createdEmployee;
+        }
+        return result;
     }
 
 }
