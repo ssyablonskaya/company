@@ -7,7 +7,11 @@ import com.solvd.company.service.PositionService;
 
 public class PositionServiceImpl implements PositionService {
 
-    private final PositionRepository positionRepository = new PositionRepositoryImpl();
+    private final PositionRepository positionRepository;
+
+    public PositionServiceImpl() {
+        this.positionRepository = new PositionRepositoryImpl();
+    }
 
     @Override
     public Position findOrCreate(Position position) {

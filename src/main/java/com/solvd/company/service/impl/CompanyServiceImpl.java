@@ -15,11 +15,18 @@ import java.util.List;
 
 public class CompanyServiceImpl implements CompanyService {
 
-    private final CompanyRepository companyRepository = new CompanyRepositoryImpl();
-    private final AddressRepository addressRepository = new AddressRepositoryImpl();
-    private final ContactRepository contactRepository = new ContactRepositoryImpl();
-    private final DepartmentService departmentService = new DepartmentServiceImpl();
+    private final CompanyRepository companyRepository;
+    private final AddressRepository addressRepository;
+    private final ContactRepository contactRepository;
+    private final DepartmentService departmentService;
     private final ServiceService serviceService = new ServiceServiceImpl();
+
+    public CompanyServiceImpl() {
+        this.companyRepository = new CompanyRepositoryImpl();
+        this.addressRepository = new AddressRepositoryImpl();
+        this.contactRepository = new ContactRepositoryImpl();
+        this.departmentService = new DepartmentServiceImpl();
+    }
 
     @Override
     public Company create(Company company) {

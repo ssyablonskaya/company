@@ -7,7 +7,11 @@ import com.solvd.company.service.ClientService;
 
 public class ClientServiceImpl implements ClientService {
 
-    private final ClientRepository clientRepository = new ClientRepositoryImpl();
+    private final ClientRepository clientRepository;
+
+    public ClientServiceImpl() {
+        this.clientRepository = new ClientRepositoryImpl();
+    }
 
     @Override
     public Client findOrCreate(Client client) {

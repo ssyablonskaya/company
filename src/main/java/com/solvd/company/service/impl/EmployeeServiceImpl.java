@@ -11,9 +11,15 @@ import com.solvd.company.service.PositionService;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();
-    private final PayrollAccountRepository payrollAccountRepository = new PayrollAccountRepositoryImpl();
-    private final PositionService positionService = new PositionServiceImpl();
+    private final EmployeeRepository employeeRepository;
+    private final PayrollAccountRepository payrollAccountRepository;
+    private final PositionService positionService;
+
+    public EmployeeServiceImpl() {
+        this.employeeRepository = new EmployeeRepositoryImpl();
+        this.payrollAccountRepository = new PayrollAccountRepositoryImpl();
+        this.positionService = new PositionServiceImpl();
+    }
 
     @Override
     public Employee create(Long departmentId, Employee employee) {

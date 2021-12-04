@@ -8,7 +8,11 @@ import com.solvd.company.service.ServiceService;
 
 public class ServiceServiceImpl implements ServiceService {
 
-    private final ServiceRepository serviceRepository = new ServiceRepositoryImpl();
+    private final ServiceRepository serviceRepository;
+
+    public ServiceServiceImpl() {
+        this.serviceRepository = new ServiceRepositoryImpl();
+    }
 
     @Override
     public Service create(Long companyId, Service service) {

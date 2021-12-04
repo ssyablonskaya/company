@@ -7,7 +7,11 @@ import com.solvd.company.service.TaxAdministrationService;
 
 public class TaxAdministrationServiceImpl implements TaxAdministrationService {
 
-    private final TaxAdministrationRepository taxAdministrationRepository = new TaxAdministrationRepositoryImpl();
+    private final TaxAdministrationRepository taxAdministrationRepository;
+
+    public TaxAdministrationServiceImpl() {
+        this.taxAdministrationRepository = new TaxAdministrationRepositoryImpl();
+    }
 
     @Override
     public TaxAdministration create(Long companyId, TaxAdministration taxAdministration) {

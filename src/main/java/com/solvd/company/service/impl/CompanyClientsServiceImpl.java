@@ -13,11 +13,17 @@ import java.util.List;
 
 public class CompanyClientsServiceImpl implements CompanyClientsService {
 
-    private final CompanyRepository companyRepository = new CompanyRepositoryImpl();
-    private final CompanyClientsRepository companyClientsRepository = new CompanyClientsRepositoryImpl();
-    private final ClientService clientService = new ClientServiceImpl();
+    private final CompanyRepository companyRepository;
+    private final CompanyClientsRepository companyClientsRepository;
+    private final ClientService clientService;
 
-/*    @Override
+    public CompanyClientsServiceImpl() {
+        this.companyRepository = new CompanyRepositoryImpl();
+        this.companyClientsRepository = new CompanyClientsRepositoryImpl();
+        this.clientService = new ClientServiceImpl();
+    }
+
+    /*    @Override
     public Company create(Company company) {
         company.setId(null);
         List<Client> companyClients = company.getClients();

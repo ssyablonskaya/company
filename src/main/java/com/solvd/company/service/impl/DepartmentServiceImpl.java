@@ -8,8 +8,13 @@ import com.solvd.company.service.EmployeeService;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final DepartmentRepository departmentRepository = new DepartmentRepositoryImpl();
-    private final EmployeeService employeeService = new EmployeeServiceImpl();
+    private final DepartmentRepository departmentRepository;
+    private final EmployeeService employeeService;
+
+    public DepartmentServiceImpl() {
+        this.departmentRepository = new DepartmentRepositoryImpl();
+        this.employeeService = new EmployeeServiceImpl();
+    }
 
     @Override
     public Department create(Long companyId, Department department) {
