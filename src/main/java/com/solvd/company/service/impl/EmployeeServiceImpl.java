@@ -4,8 +4,10 @@ import com.solvd.company.domain.Employee;
 import com.solvd.company.domain.Position;
 import com.solvd.company.persistence.EmployeeRepository;
 import com.solvd.company.persistence.PayrollAccountRepository;
-import com.solvd.company.persistence.impl.EmployeeRepositoryImpl;
-import com.solvd.company.persistence.impl.PayrollAccountRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.EmployeeRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.PayrollAccountRepositoryImpl;
+import com.solvd.company.persistence.mybatisImpl.EmployeeMyBatisRepository;
+import com.solvd.company.persistence.mybatisImpl.PayrollAccountMyBatisRepository;
 import com.solvd.company.service.EmployeeService;
 import com.solvd.company.service.PositionService;
 
@@ -16,8 +18,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final PositionService positionService;
 
     public EmployeeServiceImpl() {
-        this.employeeRepository = new EmployeeRepositoryImpl();
-        this.payrollAccountRepository = new PayrollAccountRepositoryImpl();
+        //this.employeeRepository = new EmployeeRepositoryImpl();
+        this.employeeRepository = new EmployeeMyBatisRepository();
+        //this.payrollAccountRepository = new PayrollAccountRepositoryImpl();
+        this.payrollAccountRepository = new PayrollAccountMyBatisRepository();
         this.positionService = new PositionServiceImpl();
     }
 

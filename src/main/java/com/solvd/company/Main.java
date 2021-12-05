@@ -3,8 +3,9 @@ package com.solvd.company;
 import com.solvd.company.domain.*;
 import com.solvd.company.persistence.CompanyRepository;
 import com.solvd.company.persistence.ServiceRepository;
-import com.solvd.company.persistence.impl.CompanyRepositoryImpl;
-import com.solvd.company.persistence.impl.ServiceRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.CompanyRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.ServiceRepositoryImpl;
+import com.solvd.company.persistence.mybatisImpl.CompanyMyBatisRepository;
 import com.solvd.company.service.CompanyService;
 import com.solvd.company.service.TaxAdministrationService;
 import com.solvd.company.service.impl.CompanyServiceImpl;
@@ -110,18 +111,24 @@ public class Main {
         companyService.create(firstCompany);
 
         CompanyRepository companyRepository = new CompanyRepositoryImpl();
-        companyRepository.delete(23L);
+        //companyRepository.delete(23L);
 
         ServiceRepository serviceRepository = new ServiceRepositoryImpl();
-        serviceRepository.update(firstService, "making your communication skills better");
+        //serviceRepository.update(firstService, "making your communication skills better");
 
-        TaxAdministrationService taxAdministrationService = new TaxAdministrationServiceImpl();
-        taxAdministrationService.create(firstCompany.getId(), taxAdministration);
+       /* TaxAdministrationService taxAdministrationService = new TaxAdministrationServiceImpl();
+        taxAdministrationService.create(firstCompany.getId(), taxAdministration);*/
 
-        List<Company> companies = companyService.getAll();
-        LOGGER.debug(companies);
+        //List<Company> companies = companyService.getAll();
+        //LOGGER.debug(companies);
 
         LOGGER.info("Hi");
+
+        CompanyRepository companyRepositoryMB = new CompanyMyBatisRepository();
+        List<Company> companiesMB = companyRepositoryMB.findAll();
+        LOGGER.debug(companiesMB);
+
+        LOGGER.info("Bye");
 
     }
 

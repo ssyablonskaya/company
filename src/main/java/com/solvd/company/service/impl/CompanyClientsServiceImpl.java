@@ -1,15 +1,11 @@
 package com.solvd.company.service.impl;
 
-import com.solvd.company.domain.Client;
-import com.solvd.company.domain.Company;
 import com.solvd.company.persistence.CompanyClientsRepository;
 import com.solvd.company.persistence.CompanyRepository;
-import com.solvd.company.persistence.impl.CompanyClientsRepositoryImpl;
-import com.solvd.company.persistence.impl.CompanyRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.CompanyClientsRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.CompanyRepositoryImpl;
 import com.solvd.company.service.ClientService;
 import com.solvd.company.service.CompanyClientsService;
-
-import java.util.List;
 
 public class CompanyClientsServiceImpl implements CompanyClientsService {
 

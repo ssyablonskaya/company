@@ -4,9 +4,12 @@ import com.solvd.company.domain.Company;
 import com.solvd.company.persistence.AddressRepository;
 import com.solvd.company.persistence.CompanyRepository;
 import com.solvd.company.persistence.ContactRepository;
-import com.solvd.company.persistence.impl.AddressRepositoryImpl;
-import com.solvd.company.persistence.impl.CompanyRepositoryImpl;
-import com.solvd.company.persistence.impl.ContactRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.AddressRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.CompanyRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.ContactRepositoryImpl;
+import com.solvd.company.persistence.mybatisImpl.AddressMyBatisRepository;
+import com.solvd.company.persistence.mybatisImpl.CompanyMyBatisRepository;
+import com.solvd.company.persistence.mybatisImpl.ContactMyBatisRepository;
 import com.solvd.company.service.CompanyService;
 import com.solvd.company.service.DepartmentService;
 import com.solvd.company.service.ServiceService;
@@ -22,9 +25,12 @@ public class CompanyServiceImpl implements CompanyService {
     private final ServiceService serviceService = new ServiceServiceImpl();
 
     public CompanyServiceImpl() {
-        this.companyRepository = new CompanyRepositoryImpl();
-        this.addressRepository = new AddressRepositoryImpl();
-        this.contactRepository = new ContactRepositoryImpl();
+        //this.companyRepository = new CompanyRepositoryImpl();
+        this.companyRepository = new CompanyMyBatisRepository();
+        //this.addressRepository = new AddressRepositoryImpl();
+        this.addressRepository = new AddressMyBatisRepository();
+        //this.contactRepository = new ContactRepositoryImpl();
+        this.contactRepository = new ContactMyBatisRepository();
         this.departmentService = new DepartmentServiceImpl();
     }
 

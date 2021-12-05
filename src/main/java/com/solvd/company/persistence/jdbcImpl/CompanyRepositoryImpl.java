@@ -1,4 +1,4 @@
-package com.solvd.company.persistence.impl;
+package com.solvd.company.persistence.jdbcImpl;
 
 import com.solvd.company.domain.Company;
 import com.solvd.company.domain.Department;

@@ -1,4 +1,4 @@
-package com.solvd.company.persistence.impl;
+package com.solvd.company.persistence.jdbcImpl;
 
 import com.solvd.company.domain.PayrollAccount;
 import com.solvd.company.domain.exception.ProcessException;

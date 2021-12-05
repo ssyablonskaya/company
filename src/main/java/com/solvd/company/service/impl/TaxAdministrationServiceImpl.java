@@ -2,7 +2,7 @@ package com.solvd.company.service.impl;
 
 import com.solvd.company.domain.TaxAdministration;
 import com.solvd.company.persistence.TaxAdministrationRepository;
-import com.solvd.company.persistence.impl.TaxAdministrationRepositoryImpl;
+import com.solvd.company.persistence.jdbcImpl.TaxAdministrationRepositoryImpl;
 import com.solvd.company.service.TaxAdministrationService;
 
 public class TaxAdministrationServiceImpl implements TaxAdministrationService {
