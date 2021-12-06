@@ -30,8 +30,8 @@ public class CompanyMyBatisRepository implements CompanyRepository {
         try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
             CompanyRepository companyRepository = session.getMapper(CompanyRepository.class);
             return companyRepository.findAll();
-           /* List<Subway> subways = subwayRepository.findEmployees();
-            return subways;*/
+            //List<Company> companies = companyRepository.findAll();
+            //return companies;
         }
     }
 }

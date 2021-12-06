@@ -72,7 +72,7 @@ public class Main {
         List<Department> departments = new ArrayList<>();
         departments.add(firstDepartment);
 
-        Service firstService = new Service();
+/*        Service firstService = new Service();
         firstService.setName("upgrading your communication skills2");
         firstService.setPrice(BigDecimal.valueOf(290.00));
         firstService.setDurationDays(60);
@@ -90,7 +90,7 @@ public class Main {
         firstClient.setName("Alexander Wang holding");
         firstClient.setDateOfCooperation(LocalDate.now());
         List<Client> clients = new ArrayList<>();
-        clients.add(firstClient);
+        clients.add(firstClient);*/
 
         Company firstCompany = new Company();
         firstCompany.setName("CompanyGood");
@@ -98,8 +98,8 @@ public class Main {
         firstCompany.setAddress(firstAddress);
         firstCompany.setContact(firstContact);
         firstCompany.setDepartments(departments);
-        firstCompany.setServices(services);
-        firstCompany.setClients(clients);
+        //firstCompany.setServices(services);
+        //firstCompany.setClients(clients);
 
         TaxAdministration taxAdministration = new TaxAdministration();
         taxAdministration.setNumber("N" + UUID.randomUUID());
@@ -116,11 +116,11 @@ public class Main {
         ServiceRepository serviceRepository = new ServiceRepositoryImpl();
         //serviceRepository.update(firstService, "making your communication skills better");
 
-       /* TaxAdministrationService taxAdministrationService = new TaxAdministrationServiceImpl();
-        taxAdministrationService.create(firstCompany.getId(), taxAdministration);*/
+        TaxAdministrationService taxAdministrationService = new TaxAdministrationServiceImpl();
+        taxAdministrationService.create(firstCompany.getId(), taxAdministration);
 
-        //List<Company> companies = companyService.getAll();
-        //LOGGER.debug(companies);
+        List<Company> companies = companyService.getAll();
+        LOGGER.debug(companies);
 
         LOGGER.info("Hi");
 

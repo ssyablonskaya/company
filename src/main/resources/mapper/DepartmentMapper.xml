@@ -13,5 +13,3 @@
     </resultMap>
 
 </mapper>
-
-        <!-- <result property="employee???" column="company_sphere"/>-->

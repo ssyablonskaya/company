@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.solvd.company.persistence.PayrollAccountRepository">
-    <insert id="create" keyProperty="payrollAccount.id" useGeneratedKeys="true">
+    <insert id="create" keyProperty="id" useGeneratedKeys="true">
         Insert into Payroll_accounts (bank, account_number) values (#{bank}, #{bankAccount})
     </insert>
 
