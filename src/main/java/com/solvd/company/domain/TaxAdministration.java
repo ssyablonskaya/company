@@ -1,8 +1,10 @@
-package com.solvd.company;
+package com.solvd.company.domain;
 
-public class PayrollAccount {
+public class TaxAdministration {
 
     private Long id;
+    private Company company;
+    private String number;
     private String bank;
     private String bankAccount;
 
@@ -12,6 +14,22 @@ public class PayrollAccount {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getBank() {

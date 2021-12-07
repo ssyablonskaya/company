@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.company.persistence.ContactRepository">
+    <insert id="create" keyProperty="id" useGeneratedKeys="true">
+        Insert into Contacts (phone_number, email, website) values (#{phoneNumber}, #{email}, #{website})
+    </insert>
+
+    <resultMap id="ContactResultMap" type="com.solvd.company.domain.Contact" autoMapping="false">
+        <id property="id" column="contact_id"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="email" column="email"/>
+        <result property="website" column="website"/>
+    </resultMap>
+
+</mapper>

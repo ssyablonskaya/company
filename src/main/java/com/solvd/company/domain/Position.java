@@ -1,4 +1,4 @@
-package com.solvd.company;
+package com.solvd.company.domain;
 
 import java.math.BigDecimal;
 

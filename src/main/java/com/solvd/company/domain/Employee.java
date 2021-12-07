@@ -1,15 +1,16 @@
-package com.solvd.company;
+package com.solvd.company.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Employee {
 
     private Long id;
+    //private Department department;
     private String firstName;
     private String lastName;
-    private LocalDateTime dob;
-    private Position position;
+    private LocalDate dob;
     private Integer yearOfEmployment;
+    private Position position;
     private PayrollAccount payrollAccount;
 
     public Long getId() {
@@ -36,11 +37,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDateTime dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -67,4 +68,6 @@ public class Employee {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+
 }
