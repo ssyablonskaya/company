@@ -78,7 +78,8 @@ public class ContactTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(updatedContact.getPhoneNumber(), phone, "Contact's phone wasn't updated");
         softAssert.assertEquals(updatedContact.getEmail(), email, "Contact's email wasn't updated");
-        updatedContact.setWebsite("notupdated.com"); //for checking SoftAssert
+        //for checking SoftAssert
+        //updatedContact.setWebsite("notupdated.com");
         softAssert.assertEquals(updatedContact.getWebsite(), website, "Contact's website wasn't updated");
         softAssert.assertAll();
     }
