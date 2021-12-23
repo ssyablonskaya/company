@@ -6,11 +6,38 @@
         Insert into Contacts (phone_number, email, website) values (#{phoneNumber}, #{email}, #{website})
     </insert>
 
+    <update id="update">
+        Update Contacts set phone_number = #{phoneNumber}, email = #{email}, website = #{website} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        Delete from Contacts where phone_number = #{phoneNumber}
+    </delete>
+
+    <select id="findById" resultMap="ContactResultMapTest">
+        Select c.id as contact_id, c.phone_number as contact_phone, c.email as contact_email, c.website as contact_website
+        from Contacts c
+        where c.id = #{id}
+    </select>
+
+    <select id="findByPhone" resultMap="ContactResultMapTest">
+        Select c.id as contact_id, c.phone_number as contact_phone, c.email as contact_email, c.website as contact_website
+        from Contacts c
+        where c.phone_number = #{phoneNumber}
+    </select>
+
     <resultMap id="ContactResultMap" type="com.solvd.company.domain.Contact" autoMapping="false">
         <id property="id" column="contact_id"/>
         <result property="phoneNumber" column="phone_number"/>
         <result property="email" column="email"/>
         <result property="website" column="website"/>
+    </resultMap>
+
+    <resultMap id="ContactResultMapTest" type="com.solvd.company.domain.Contact" autoMapping="false">
+        <id property="id" column="contact_id"/>
+        <result property="phoneNumber" column="contact_phone"/>
+        <result property="email" column="contact_email"/>
+        <result property="website" column="contact_website"/>
     </resultMap>
 
 </mapper>

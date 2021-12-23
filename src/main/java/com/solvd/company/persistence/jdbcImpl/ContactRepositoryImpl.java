@@ -33,4 +33,23 @@ public class ContactRepositoryImpl implements ContactRepository {
         }
     }
 
+    @Override
+    public void update(Long id, String phone, String email, String website) {
+
+    }
+
+    @Override
+    public void delete(Contact contact) {
+
+    }
+
+    @Override
+    public Contact findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Contact findByPhone(String phone) {
+        return null;
+    }
 }
