@@ -31,7 +31,6 @@ public class ContactMyBatisRepository implements ContactRepository {
         }
     }
 
-    //как у кс
     @Override
     public Contact findById(Long id) {
         try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {

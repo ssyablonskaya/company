@@ -3,21 +3,44 @@
 
 <mapper namespace="com.solvd.company.persistence.CompanyRepository">
     <insert id="create" keyColumn="id" keyProperty="company.id" useGeneratedKeys="true">
-        Insert into Companies(address_id, contact_id, name, sphere) values (#{addressId}, #{contactId}, #{company.name}, #{company.sphere})
+        Insert into Companies(address_id, contact_id, name, sphere) values (#{addressId}, #{contactId}, #{company.name},
+        #{company.sphere})
     </insert>
-    
+
     <delete id="delete">
-            Delete from Companies where city = #{city}
+        Delete from Companies where city = #{city}
     </delete>
-    
+
+    <select id="findAllCompanyInfoAddressesContactsById" resultMap="CompanyResultMapTest">
+        SELECT c.id as company_id, c.name as company_name, c.sphere as company_sphere,
+        a.id as address_id, a.country as company_address, a.city as company_city, a.street as company_street, a.house as
+        company_house,
+        con.id as contact_id, con.phone_number as company_phone_number, con.email as company_email, con.website as
+        company_website
+        FROM Companies c
+        LEFT JOIN Addresses a ON a.id = c.address_id
+        LEFT JOIN Contacts con ON con.id = c.contact_id
+        WHERE c.id = #{id};
+    </select>
+
+    <select id="findCompanyById" resultMap="CompanyResultMapTest">
+        SELECT c.id as company_id, a.id as address_id, con.id as contact_id, c.name as company_name, c.sphere as
+        company_sphere
+        FROM Companies c
+        LEFT JOIN Addresses a ON a.id = c.address_id
+        LEFT JOIN Contacts con ON con.id = c.contact_id
+        WHERE c.id = #{id};
+    </select>
+
     <select id="findAll" resultMap="CompanyResultMap">
         SELECT c.id as company_id, c.name as company_name, c.sphere as company_sphere,
         d.id as department_id, d.name as department_name,
-        e.id as employee_id, e.first_name as employee_first_name, e.last_name as employee_last_name, e.dob as employee_dob,
+        e.id as employee_id, e.first_name as employee_first_name, e.last_name as employee_last_name, e.dob as
+        employee_dob,
         e.year_of_employment as employee_year_of_employment
         FROM Companies c
         LEFT JOIN Departments d ON c.id = d.company_id
-        LEFT JOIN Employees e ON d.id = e.department_id
+        LEFT JOIN Employees e ON d.id = e.department_id;
     </select>
 
     <resultMap id="CompanyResultMap" type="com.solvd.company.domain.Company" autoMapping="false">
@@ -26,7 +49,16 @@
         <result property="sphere" column="company_sphere"/>
         <association property="address" resultMap="com.solvd.company.persistence.AddressRepository.AddressResultMap"/>
         <association property="contact" resultMap="com.solvd.company.persistence.ContactRepository.ContactResultMap"/>
-        <collection property="departments"  javaType="ArrayList" resultMap="com.solvd.company.persistence.DepartmentRepository.DepartmentResultMap"/>
+        <collection property="departments" javaType="ArrayList"
+                    resultMap="com.solvd.company.persistence.DepartmentRepository.DepartmentResultMap"/>
+    </resultMap>
+
+    <resultMap id="CompanyResultMapTest" type="com.solvd.company.domain.Company" autoMapping="false">
+        <id property="id" column="company_id"/>
+        <result property="name" column="company_name"/>
+        <result property="sphere" column="company_sphere"/>
+        <association property="address" resultMap="com.solvd.company.persistence.AddressRepository.AddressResultMap"/>
+        <association property="contact" resultMap="com.solvd.company.persistence.ContactRepository.ContactResultMap"/>
     </resultMap>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.solvd.company.persistence.mybatisImpl;
 
 import com.solvd.company.domain.Company;
+import com.solvd.company.domain.Contact;
 import com.solvd.company.persistence.CompanyRepository;
 import com.solvd.company.persistence.MyBatisSessionHolder;
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +33,24 @@ public class CompanyMyBatisRepository implements CompanyRepository {
             return companyRepository.findAll();
             //List<Company> companies = companyRepository.findAll();
             //return companies;
+        }
+    }
+
+    @Override
+    public Company findCompanyById(Long id) {
+        try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            CompanyRepository companyRepository = session.getMapper(CompanyRepository.class);
+            Company company = companyRepository.findCompanyById(id);
+            return company;
+        }
+    }
+
+    @Override
+    public Company findAllCompanyInfoAddressesContactsById(Long id) {
+        try (SqlSession session = MyBatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            CompanyRepository companyRepository = session.getMapper(CompanyRepository.class);
+            Company company = companyRepository.findAllCompanyInfoAddressesContactsById(id);
+            return company;
         }
     }
 }

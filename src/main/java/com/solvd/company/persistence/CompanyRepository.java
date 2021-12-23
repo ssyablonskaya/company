@@ -13,4 +13,8 @@ public interface CompanyRepository {
 
     List<Company> findAll();
 
+    Company findCompanyById(Long id);
+
+    Company findAllCompanyInfoAddressesContactsById(Long id);
+
 }

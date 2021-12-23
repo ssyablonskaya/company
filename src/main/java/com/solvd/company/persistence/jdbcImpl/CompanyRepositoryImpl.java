@@ -63,7 +63,6 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         return companies;
     }
 
-
     public static List<Company> mapCompanies(ResultSet resultSet) {
         List<Company> companies = new ArrayList<>();
         List<Department> departments = new ArrayList<>();
@@ -112,5 +111,15 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
+    }
+
+    @Override
+    public Company findCompanyById(Long id) {
+        return null;
+    }
+
+    @Override
+    public Company findAllCompanyInfoAddressesContactsById(Long id) {
+        return null;
     }
 }

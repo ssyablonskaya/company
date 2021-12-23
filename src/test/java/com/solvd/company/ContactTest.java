@@ -17,19 +17,9 @@ public class ContactTest {
         System.out.println("Test is running...\n");
     }
 
-    @AfterTest
-    public void afterTest() {
-        System.out.println("\nTest was ended.");
-    }
-
     @BeforeGroups(groups = "findBySmth")
     public void beforeGroups() {
         System.out.println("Group \"findBySmth\" is testing...\n");
-    }
-
-    @AfterGroups(groups = "findBySmth")
-    public void afterGroups() {
-        System.out.println("\nGroup \"findBySmth\" was ended.");
     }
 
     @BeforeClass
@@ -39,27 +29,22 @@ public class ContactTest {
         contactTest.setWebsite("test.com");
     }
 
-    @AfterClass
-    public void deleteContactTestAfter() {
-        contactTest = null;
-    }
-
     @Test
-    public void testCaseVerifyCreateContact() {
+    public void verifyCreateContactTest() {
         contactRepository.create(contactTest);
         Contact filledContact = contactRepository.findByPhone(contactTest.getPhoneNumber());
         Assert.assertNotNull(filledContact, "Contact wasn't created");
     }
 
     @Test(groups = "findBySmth")
-    public void testCaseVerifyFindByIdContact() {
-        Contact findContactById = contactRepository.findById(4L);
+    public void verifyFindByIdContactTest() {
+        Contact findContactById = contactRepository.findById(contactTest.getId());
         Assert.assertNotNull(findContactById, "Contact wasn't found by id");
     }
 
     @Test(groups = "findBySmth")
-    public void testCaseVerifyFindByPhoneContact() {
-        Contact findContactByPhone = contactRepository.findByPhone("1111");
+    public void verifyFindByPhoneContactTest() {
+        Contact findContactByPhone = contactRepository.findByPhone(contactTest.getPhoneNumber());
         Assert.assertNotNull(findContactByPhone, "Contact wasn't found by phone");
     }
 
@@ -72,7 +57,7 @@ public class ContactTest {
     }
 
     @Test(dataProvider = "updateDataProvider")
-    public void testCaseVerifyUpdateContact(Long id, String phone, String email, String website) {
+    public void verifyUpdateContactTest(Long id, String phone, String email, String website) {
         contactRepository.update(id, phone, email, website);
         Contact updatedContact = contactRepository.findById(id);
         SoftAssert softAssert = new SoftAssert();
@@ -85,11 +70,25 @@ public class ContactTest {
     }
 
     @Test
-    public void testCaseVerifyDeleteContact() {
+    public void verifyDeleteContactTest() {
         contactRepository.delete(contactTest);
         Contact deletedContact = contactRepository.findByPhone("1111");
         Assert.assertNull(deletedContact, "Contact wasn't deleted");
     }
 
+    @AfterClass
+    public void deleteContactTestAfter() {
+        contactTest = null;
+    }
+
+    @AfterGroups(groups = "findBySmth")
+    public void afterGroups() {
+        System.out.println("\nGroup \"findBySmth\" was ended.");
+    }
+
+    @AfterTest
+    public void afterTest() {
+        System.out.println("\nTest was ended.");
+    }
 
 }

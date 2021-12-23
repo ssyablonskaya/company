@@ -11,11 +11,8 @@
         <classes>
             <class name="com.solvd.company.ContactTest">
             </class>
-            <!--<class name="com.solvd.company.CompanyTest">
-                <methods>
-                    <include name="verify..."/>
-                </methods>
-            </class>-->
+            <class name="com.solvd.company.CompanyTest">
+            </class>
         </classes>
     </test>
 </suite>
