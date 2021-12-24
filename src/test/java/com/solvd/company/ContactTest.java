@@ -7,6 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
+import java.util.UUID;
+
 public class ContactTest {
 
     private final ContactRepository contactRepository = new ContactMyBatisRepository();
@@ -24,9 +26,14 @@ public class ContactTest {
 
     @BeforeClass
     public void createContactTestBefore() {
-        contactTest.setPhoneNumber("1111");
-        contactTest.setEmail("test@gmail.com");
-        contactTest.setWebsite("test.com");
+        contactTest.setPhoneNumber("+" + UUID.randomUUID());
+        contactTest.setEmail("+test@gmail.com");
+        contactTest.setWebsite("+test.com");
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        System.out.println("Method was started...\n");
     }
 
     @Test
@@ -38,12 +45,14 @@ public class ContactTest {
 
     @Test(groups = "findBySmth")
     public void verifyFindByIdContactTest() {
+        verifyCreateContactTest();
         Contact findContactById = contactRepository.findById(contactTest.getId());
         Assert.assertNotNull(findContactById, "Contact wasn't found by id");
     }
 
     @Test(groups = "findBySmth")
     public void verifyFindByPhoneContactTest() {
+        verifyCreateContactTest();
         Contact findContactByPhone = contactRepository.findByPhone(contactTest.getPhoneNumber());
         Assert.assertNotNull(findContactByPhone, "Contact wasn't found by phone");
     }
@@ -72,7 +81,7 @@ public class ContactTest {
     @Test
     public void verifyDeleteContactTest() {
         contactRepository.delete(contactTest);
-        Contact deletedContact = contactRepository.findByPhone("1111");
+        Contact deletedContact = contactRepository.findByPhone(contactTest.getPhoneNumber());
         Assert.assertNull(deletedContact, "Contact wasn't deleted");
     }
 

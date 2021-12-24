@@ -1,7 +1,6 @@
 package com.solvd.company.persistence.mybatisImpl;
 
 import com.solvd.company.domain.Company;
-import com.solvd.company.domain.Contact;
 import com.solvd.company.persistence.CompanyRepository;
 import com.solvd.company.persistence.MyBatisSessionHolder;
 import org.apache.ibatis.session.SqlSession;

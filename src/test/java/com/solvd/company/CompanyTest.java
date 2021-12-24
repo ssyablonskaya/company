@@ -10,10 +10,9 @@ import com.solvd.company.persistence.mybatisImpl.AddressMyBatisRepository;
 import com.solvd.company.persistence.mybatisImpl.CompanyMyBatisRepository;
 import com.solvd.company.persistence.mybatisImpl.ContactMyBatisRepository;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.util.UUID;
 
 public class CompanyTest {
 
@@ -25,30 +24,30 @@ public class CompanyTest {
     private final AddressRepository addressRepository = new AddressMyBatisRepository();
     private final Address addressTest = new Address();
 
-    @BeforeTest
-    public void beforeTest() {
-        System.out.println("Test is running...\n");
-    }
-
     @BeforeGroups(groups = "findBySmth")
     public void beforeGroups() {
         System.out.println("Group \"findBySmth\" is testing...\n");
     }
 
+    @BeforeMethod
+    public void beforeMethod() {
+        System.out.println("Method was started...\n");
+    }
+
     @Test
     public void verifyCreateCompanyTest() {
-        addressTest.setCountry("Test");
+        addressTest.setCountry("Test" + UUID.randomUUID());
         addressTest.setCity("Test");
         addressTest.setStreet("Test");
         addressTest.setHouse("test");
         addressRepository.create(addressTest);
 
-        contactTest.setPhoneNumber("0000");
+        contactTest.setPhoneNumber("0000" + UUID.randomUUID());
         contactTest.setEmail("test email");
         contactTest.setWebsite("test website");
         contactRepository.create(contactTest);
 
-        companyTest.setName("Test Company");
+        companyTest.setName("Test Company" + UUID.randomUUID());
         companyTest.setSphere("test sphere");
         companyTest.setAddress(addressTest);
         companyTest.setContact(contactTest);
@@ -61,13 +60,9 @@ public class CompanyTest {
 
     @Test(groups = "findBySmth")
     public void verifyFindByIdCompanyTest() {
-        Company findCompanyById = companyRepository.findAllCompanyInfoAddressesContactsById(9L);
+        verifyCreateCompanyTest();
+        Company findCompanyById = companyRepository.findAllCompanyInfoAddressesContactsById(companyTest.getId());
         Assert.assertNotNull(findCompanyById, "Company's info about address and contacts wasn't found by id");
-    }
-
-    @AfterTest
-    public void afterTest() {
-        System.out.println("\nTest was ended.");
     }
 
 }

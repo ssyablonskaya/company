@@ -9,10 +9,8 @@
             </run>
         </groups>
         <classes>
-            <class name="com.solvd.company.ContactTest">
-            </class>
-            <class name="com.solvd.company.CompanyTest">
-            </class>
+            <class name="com.solvd.company.ContactTest"/>
+            <class name="com.solvd.company.CompanyTest"/>
         </classes>
     </test>
 </suite>
